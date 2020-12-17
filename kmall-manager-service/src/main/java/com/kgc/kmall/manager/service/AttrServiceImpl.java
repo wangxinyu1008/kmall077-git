@@ -39,7 +39,7 @@ public class AttrServiceImpl implements AttrService{
     public Integer add(PmsBaseAttrInfo attrInfo) {
         int i=0;
         if(attrInfo.getId()==null) {
-            i = pmsBaseAttrInfoMapper.insertSelective(attrInfo);
+            i = pmsBaseAttrInfoMapper.insert(attrInfo);
         }else{
             i=pmsBaseAttrInfoMapper.updateByPrimaryKeySelective(attrInfo);
         }
