@@ -1,8 +1,13 @@
 package com.kgc.kmall.manager.controller;
 
 import com.kgc.kmall.bean.PmsBaseSaleAttr;
+import com.kgc.kmall.bean.PmsProductImage;
 import com.kgc.kmall.bean.PmsProductInfo;
+import com.kgc.kmall.bean.PmsProductSaleAttr;
 import com.kgc.kmall.service.SpuService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.csource.common.MyException;
@@ -22,16 +27,21 @@ import java.util.List;
  */
 @CrossOrigin
 @RestController
+@Api(tags = "商品系列属性",description = "提供商品系列属性")
 public class SpuController {
     @Reference
     SpuService spuService;
     @Value("${fileServer.url}")
     String fileUrl;
+    @ApiOperation(value = "根据三级分类id查询对应的商品系列信息",httpMethod = "GET")
+    @ApiImplicitParam(name = "catalog3Id",value = "3级分类id")
     @RequestMapping("/spuList")
     public List<PmsProductInfo> spuList(Long catalog3Id){
         List<PmsProductInfo> infoList = spuService.spuList(catalog3Id);
         return infoList;
     }
+    @ApiOperation(value = "文件上传",httpMethod = "POST")
+    @ApiImplicitParam(name = "file",value = "图片上传")
     @RequestMapping("/fileUpload")
     public String fileUpload(@RequestParam("file")MultipartFile file) throws IOException, MyException {
         //文件上传
@@ -57,13 +67,33 @@ public class SpuController {
         System.out.println(imgUrl);
         return imgUrl;
     }
+    @ApiOperation(value = "平台销售属性集合",httpMethod = "GET")
+    @ApiImplicitParam(name = "file",value = "图片上传")
     @RequestMapping("/baseSaleAttrList")
     public List<PmsBaseSaleAttr> baseSaleAttrList(){
         List<PmsBaseSaleAttr> saleAttrList = spuService.baseSaleAttrList();
         return saleAttrList;
     }
+    @ApiOperation(value = "添加销售SPU属性",httpMethod = "POST")
+    @ApiImplicitParam(name = "pmsProductInfo",value = "商品系列集合")
     @RequestMapping("/saveSpuInfo")
     public String saveSpuInfo(@RequestBody PmsProductInfo pmsProductInfo){
-        return "success";
+        //保存数据库
+        Integer integer = spuService.saveSpuInfo(pmsProductInfo);
+        return integer>0?"success":"fail";
+    }
+    @ApiOperation(value = "Spu平台销售集合",httpMethod = "GET")
+    @ApiImplicitParam(name = "spuId",value = "SpuId")
+    @RequestMapping("/spuSaleAttrList")
+    public List<PmsProductSaleAttr> spuSaleAttrList(Long spuId){
+        List<PmsProductSaleAttr> pmsProductSaleAttrList=spuService.spuSaleAttrList(spuId);
+        return pmsProductSaleAttrList;
+    }
+    @ApiOperation(value = "Spu平台销售图片集合",httpMethod = "GET")
+    @ApiImplicitParam(name = "spuId",value = "SpuId")
+    @RequestMapping("/spuImageList")
+    public List<PmsProductImage> spuImageList(Long spuId){
+        List<PmsProductImage> pmsProductImageList = spuService.spuImageList(spuId);
+        return pmsProductImageList;
     }
 }

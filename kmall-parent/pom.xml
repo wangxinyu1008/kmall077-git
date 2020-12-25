@@ -24,9 +24,29 @@
     <dubbo.spring.boot.starter.version>2.7.1</dubbo.spring.boot.starter.version>
     <dubbo.version>2.7.1</dubbo.version>
     <dubbo.dependencies.zookeeper.version>2.7.1</dubbo.dependencies.zookeeper.version>
+    <commons-version>2.4</commons-version>
+    <swagger-version>2.9.2</swagger-version>
   </properties>
 <dependencyManagement>
     <dependencies>
+      <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${swagger-version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${swagger-version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons-version}</version>
+      </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>

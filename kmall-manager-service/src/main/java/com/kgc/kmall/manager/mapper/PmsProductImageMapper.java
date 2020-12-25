@@ -28,4 +28,5 @@ public interface PmsProductImageMapper {
     int updateByPrimaryKeySelective(PmsProductImage record);
 
     int updateByPrimaryKey(PmsProductImage record);
+    int insertImages(@Param("productId") Long productId,@Param("imageList") List<PmsProductImage> imageList);
 }
