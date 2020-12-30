@@ -21,6 +21,7 @@ public class PmsSkuInfo implements Serializable{
     private Long catalog3Id;
 
     private String skuDefaultImg;
+
     List<PmsSkuImage> skuImageList;
 
     List<PmsSkuAttrValue> skuAttrValueList;

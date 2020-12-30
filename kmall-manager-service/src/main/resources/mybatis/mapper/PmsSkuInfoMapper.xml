@@ -11,6 +11,7 @@
     <result column="tm_id" property="tmId" jdbcType="BIGINT" />
     <result column="catalog3_id" property="catalog3Id" jdbcType="BIGINT" />
     <result column="sku_default_img" property="skuDefaultImg" jdbcType="VARCHAR" />
+    <collection property="skuImageList" ofType="com.kgc.kmall.bean.PmsSkuImage" column="id" select="com.kgc.kmall.manager.mapper.PmsSkuImageMapper.selectBySkuId"></collection>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -103,7 +104,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kgc.kmall.bean.PmsSkuInfo" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.kgc.kmall.bean.PmsSkuInfo" >
     insert into pms_sku_info (id, product_id, price, 
       sku_name, sku_desc, weight, 
       tm_id, catalog3_id, sku_default_img

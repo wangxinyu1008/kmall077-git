@@ -1,5 +1,6 @@
 package com.kgc.kmall.manager.mapper;
 
+import com.kgc.kmall.bean.PmsBaseSaleAttr;
 import com.kgc.kmall.bean.PmsProductSaleAttr;
 import com.kgc.kmall.bean.PmsProductSaleAttrExample;
 import org.apache.ibatis.annotations.Param;
@@ -28,4 +29,5 @@ public interface PmsProductSaleAttrMapper {
     int updateByPrimaryKeySelective(PmsProductSaleAttr record);
 
     int updateByPrimaryKey(PmsProductSaleAttr record);
+    List<PmsBaseSaleAttr> spuSaleAttrListIsCheck(@Param("spuId")Long spuId, @Param("skuId")Long skuId);
 }
