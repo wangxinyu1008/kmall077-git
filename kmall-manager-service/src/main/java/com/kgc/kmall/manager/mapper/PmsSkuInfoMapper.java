@@ -27,4 +27,6 @@ public interface PmsSkuInfoMapper {
     int updateByPrimaryKeySelective(PmsSkuInfo record);
 
     int updateByPrimaryKey(PmsSkuInfo record);
+
+    List<PmsSkuInfo> selectBySpuId(Long spuId);
 }
