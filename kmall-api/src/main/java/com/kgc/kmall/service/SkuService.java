@@ -12,4 +12,5 @@ public interface SkuService {
     String saveSkuInfo(PmsSkuInfo skuInfo);
     PmsSkuInfo selectBySkuId(Long id);
     List<PmsSkuInfo> selectBySpuId(Long spuId);
+    List<PmsSkuInfo> getAllSku();
 }
