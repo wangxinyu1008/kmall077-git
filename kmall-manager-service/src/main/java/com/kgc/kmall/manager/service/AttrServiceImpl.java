@@ -8,11 +8,14 @@ import com.kgc.kmall.bean.PmsBaseAttrValueExample;
 import com.kgc.kmall.manager.mapper.PmsBaseAttrInfoMapper;
 import com.kgc.kmall.manager.mapper.PmsBaseAttrValueMapper;
 import com.kgc.kmall.service.AttrService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
+import org.assertj.core.condition.Join;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author shkstart
@@ -67,5 +70,13 @@ public class AttrServiceImpl implements AttrService{
         criteria.andAttrIdEqualTo(attrId);
         List<PmsBaseAttrValue> pmsBaseAttrValues = pmsBaseAttrValueMapper.selectByExample(pmsBaseAttrValueExample);
         return pmsBaseAttrValues;
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> selectAttrInfoValueListByValueId(Set<Long> valueIds) {
+        String join= StringUtils.join(valueIds);
+        join=join.substring(1,join.length()-1);
+        List<PmsBaseAttrInfo> pmsBaseAttrInfos=pmsBaseAttrInfoMapper.selectAttrInfoValueListByValueId(join);
+        return pmsBaseAttrInfos;
     }
 }
