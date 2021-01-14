@@ -1,13 +1,13 @@
-package com.kgc.kmall.searchweb;
+package com.kgc.kmall.passportweb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KmallSearchWebApplication {
+public class KmallPassportWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KmallSearchWebApplication.class, args);
+		SpringApplication.run(KmallPassportWebApplication.class, args);
 	}
 
 }

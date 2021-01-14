@@ -31,9 +31,21 @@
     <redisson-version>3.10.5</redisson-version>
     <jest-version>5.3.4</jest-version>
     <commons.lang3>3.8.1</commons.lang3>
+    <jjwt.version>0.9.0</jjwt.version>
+    <httpclient.version>4.5.5</httpclient.version>
   </properties>
 <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>${jjwt.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>

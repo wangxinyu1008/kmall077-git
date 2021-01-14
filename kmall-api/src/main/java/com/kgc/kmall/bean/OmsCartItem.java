@@ -46,10 +46,10 @@ public class OmsCartItem implements Serializable{
     private String productSn;
 
     private String productAttr;
+
+    private Integer isChecked;
     //小计
     private BigDecimal totalPrice;
-    //购物车中是否被选中
-    private String isChecked="1";
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
@@ -57,14 +57,6 @@ public class OmsCartItem implements Serializable{
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public String getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(String isChecked) {
-        this.isChecked = isChecked;
     }
 
     public Long getId() {
@@ -233,5 +225,13 @@ public class OmsCartItem implements Serializable{
 
     public void setProductAttr(String productAttr) {
         this.productAttr = productAttr == null ? null : productAttr.trim();
+    }
+
+    public Integer getIsChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(Integer isChecked) {
+        this.isChecked = isChecked;
     }
 }

@@ -93,6 +93,7 @@ public class CartServiceImpl implements CartService {
                 OmsCartItemExample omsCartItemExample=new OmsCartItemExample();
                 omsCartItemExample.createCriteria().andMemberIdEqualTo(Long.parseLong(memberId));
                 omsCartItems=omsCartItemMapper.selectByExample(omsCartItemExample);
+                flushCartCache(memberId);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,5 +103,15 @@ public class CartServiceImpl implements CartService {
           // lock.unlock();
         }
         return omsCartItems;
+    }
+
+    @Override
+    public void checkCart(OmsCartItem omsCartItem) {
+        OmsCartItemExample example=new OmsCartItemExample();
+        OmsCartItemExample.Criteria criteria = example.createCriteria();
+        criteria.andMemberIdEqualTo(omsCartItem.getMemberId());
+        criteria.andProductSkuIdEqualTo(omsCartItem.getProductSkuId());
+        omsCartItemMapper.updateByExampleSelective(omsCartItem,example);
+        flushCartCache(omsCartItem.getMemberId().toString());
     }
 }
