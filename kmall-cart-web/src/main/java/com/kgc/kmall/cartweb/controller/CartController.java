@@ -56,9 +56,8 @@ public class CartController {
 
         // 判断用户是否登录
         String memberId = "";
-        String mid=(String)request.getAttribute("memberId");
-        if(mid!=null){
-            memberId=mid;
+        if(request.getAttribute("memberId")!=null){
+            memberId=request.getAttribute("memberId").toString();
         }
 
         if (StringUtils.isBlank(memberId)) {
@@ -134,9 +133,8 @@ public class CartController {
     public String cartList(ModelMap modelMap, HttpServletRequest request){
         List<OmsCartItem> omsCartItems = new ArrayList<>();
         String memberId = "";
-        String mid=(String)request.getAttribute("memberId");
-        if(mid!=null){
-            memberId=mid;
+        if(request.getAttribute("memberId")!=null){
+            memberId=request.getAttribute("memberId").toString();
         }
         if(StringUtils.isNotBlank(memberId)){
             // 已经登录查询db
@@ -163,9 +161,8 @@ public class CartController {
     public Map<String,Object> checkCart(String isChecked, Long skuId, HttpServletRequest request, HttpServletResponse response){
         Map<String,Object> map=new HashMap<>();
         String memberId="";
-        String mid=(String)request.getAttribute("memberId");
-        if(mid!=null){
-            memberId=mid;
+        if(request.getAttribute("memberId")!=null){
+            memberId=request.getAttribute("memberId").toString();
         }
         if(StringUtils.isNotBlank(memberId)){
             // 调用服务，修改状态
@@ -223,7 +220,6 @@ public class CartController {
     @LoginRequired(true)
     @RequestMapping("toTrade")
     public String toTrade() {
-
-        return "toTrade";
+            return "toTrade";
     }
 }
